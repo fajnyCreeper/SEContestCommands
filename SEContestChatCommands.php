@@ -14,6 +14,7 @@ if (isset($_GET["key"], $_GET["action"]) && $_GET["key"] == $key)
   require_once("SEContestChatCommands.close.php");
   require_once("SEContestChatCommands.latest.php");
   require_once("SEContestChatCommands.pick.php");
+  require_once("SEContestChatCommands.refund.php");
 
   switch(strtolower($_GET["action"]))
   {
@@ -57,7 +58,7 @@ if (isset($_GET["key"], $_GET["action"]) && $_GET["key"] == $key)
 
     case "close":
       CloseContest($channel, $bearer, GetActiveId($channel, $bearer));
-      break;
+      break; 
 
     case "draw":
       if (isset($_GET["winner"]) && trim($_GET["winner"]) != "")
@@ -76,8 +77,12 @@ if (isset($_GET["key"], $_GET["action"]) && $_GET["key"] == $key)
         echo "Wrong format! Expected !bets draw winningOption";
       break;
 
+    case "refund":
+      RefundContest($channel, $bearer, GetLatestId($channel, $bearer));
+      break; 
+
     default:
-      echo "Invalid action! Expected: start|close|draw";
+      echo "Invalid action! Expected: start|close|draw|refund";
   }
 }
 else
