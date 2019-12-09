@@ -2,7 +2,7 @@
 Chat commands for StreamElements' Contests
 
 ## Credentials
-* Create file called `SEContestChatCommands.credentials.php`
+* Create file called `credentials.php`
 * The file will contain three variables
   * `$key` - random string, that is used in URL
   * `$channel` SE Account ID that you can find [here](https://streamelements.com/dashboard/account/channels)
