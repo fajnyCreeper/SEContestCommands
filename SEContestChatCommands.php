@@ -19,7 +19,7 @@ if (isset($_GET["key"], $_GET["action"]) && $_GET["key"] == $key)
   switch(strtolower($_GET["action"]))
   {
     case "start":
-      if (isset($_GET["name"], $_GET["duration"], $_GET["options"]) && $_GET["name"] != "" && $_GET["duration"] != "" && $_GET["options"] != "")
+      if (isset($_GET["name"], $_GET["duration"], $_GET["options"]) && trim($_GET["name"]) != "" && trim($_GET["duration"]) != "" && trim($_GET["options"]) != "")
       {
         $duration = 10;
         try
@@ -31,8 +31,8 @@ if (isset($_GET["key"], $_GET["action"]) && $_GET["key"] == $key)
           $duration = 15;
         }
 
-        $name = str_replace("_", " ", $_GET["name"]);
-        $optionsRaw = preg_split('/ /', $_GET["options"]);
+        $name = str_replace("_", " ", trim($_GET["name"]));
+        $optionsRaw = preg_split('/ /', trim($_GET["options"]));
         unset($value);
         $options = array();
         foreach($optionsRaw as $key => $value)
