@@ -5,20 +5,21 @@ $key = "random string";
 $channel = "SE channelID";
 $bearer = "SE JWT token";
 */
-require_once("SEContestChatCommands.credentials.php");
+require_once("credentials.php");
 
 if (isset($_GET["key"], $_GET["action"]) && $_GET["key"] == $key)
 {
-  require_once("SEContestChatCommands.open.php");
-  require_once("SEContestChatCommands.active.php");
-  require_once("SEContestChatCommands.close.php");
-  require_once("SEContestChatCommands.latest.php");
-  require_once("SEContestChatCommands.pick.php");
+  require_once("open.php");
+  require_once("active.php");
+  require_once("close.php");
+  require_once("latest.php");
+  require_once("pick.php");
+  require_once("refund.php");
 
   switch(strtolower($_GET["action"]))
   {
     case "start":
-      if (isset($_GET["name"], $_GET["duration"], $_GET["options"]) && $_GET["name"] != "" && $_GET["duration"] != "" && $_GET["options"] != "")
+      if (isset($_GET["name"], $_GET["duration"], $_GET["options"]) && trim($_GET["name"]) != "" && trim($_GET["duration"]) != "" && trim($_GET["options"]) != "")
       {
         $duration = 10;
         try
@@ -30,9 +31,8 @@ if (isset($_GET["key"], $_GET["action"]) && $_GET["key"] == $key)
           $duration = 15;
         }
 
-        $name = str_replace("_", " ", $_GET["name"]);
-        $optionsRaw = preg_split('/ /', $_GET["options"]);
-        unset($value);
+        $name = str_replace("_", " ", trim($_GET["name"]));
+        $optionsRaw = preg_split('/ /', trim($_GET["options"]));
         $options = array();
         foreach($optionsRaw as $key => $value)
         {
@@ -76,8 +76,12 @@ if (isset($_GET["key"], $_GET["action"]) && $_GET["key"] == $key)
         echo "Wrong format! Expected !bets draw winningOption";
       break;
 
+    case "refund":
+      RefundContest($channel, $bearer, GetLatestId($channel, $bearer));
+      break;
+
     default:
-      echo "Invalid action! Expected: start|close|draw";
+      echo "Invalid action! Expected: start|close|draw|refund";
   }
 }
 else

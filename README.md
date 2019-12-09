@@ -2,7 +2,7 @@
 Chat commands for StreamElements' Contests
 
 ## Credentials
-* Create file called `SEContestChatCommands.credentials.php`
+* Create file called `credentials.php`
 * The file will contain three variables
   * `$key` - random string, that is used in URL
   * `$channel` SE Account ID that you can find [here](https://streamelements.com/dashboard/account/channels)
@@ -29,5 +29,5 @@ Examples are using base command `!bets`
 ### Request on API
 This will show example body of StreamElements command
 ```
-${customapi.example.com/SEContestChatCommands.php?key=my_key&action=${pathescape ${1}}&name=${pathescape ${2|${1}}}&duration=${pathescape ${3|${1}}}&options=${pathescape ${4:|${1}}}&winner=${pathescape ${2:|' '}}}
+${customapi.example.com/SEContestChatCommands.php?key=my_key&action=${pathescape ${1}}&name=${pathescape ${2|' '}}&duration=${pathescape ${3|' '}}&options=${pathescape ${4:|' '}}&winner=${pathescape ${2:|' '}}}
 ```
