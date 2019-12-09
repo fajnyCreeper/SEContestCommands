@@ -33,7 +33,6 @@ if (isset($_GET["key"], $_GET["action"]) && $_GET["key"] == $key)
 
         $name = str_replace("_", " ", trim($_GET["name"]));
         $optionsRaw = preg_split('/ /', trim($_GET["options"]));
-        unset($value);
         $options = array();
         foreach($optionsRaw as $key => $value)
         {
