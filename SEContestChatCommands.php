@@ -31,8 +31,8 @@ if (isset($_GET["key"], $_GET["action"]) && $_GET["key"] == $key)
           $duration = 15;
         }
 
-        $name = str_replace("_", " ", trim($_GET["name"]));
-        $optionsRaw = preg_split('/ /', trim($_GET["options"]));
+        $name = str_replace("_", " ", trim(urldecode($_GET["name"])));
+        $optionsRaw = preg_split('/ /', trim(urldecode($_GET["options"])));
         $options = array();
         foreach($optionsRaw as $key => $value)
         {
