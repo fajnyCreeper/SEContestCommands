@@ -56,7 +56,7 @@ if (isset($_GET["key"], $_GET["args"]) && $_GET["key"] == $key)
       break;
 
     case "close":
-      CloseContest($channel, $bearer, GetActiveId($channel, $bearer));
+      CloseContest($bot, GetActiveId($bot));
       break;
 
     case "draw":
