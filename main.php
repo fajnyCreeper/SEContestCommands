@@ -21,7 +21,7 @@ if (isset($_GET["key"], $_GET["args"]) && $_GET["key"] == $key)
   require_once("pick.php");
   require_once("refund.php");
 
-  $args = urldecode($_GET["args"]);
+  $args = trim(urldecode($_GET["args"]));
   $argsArray = explode(" ", $args);
 
   $action = strtolower($argsArray[0]);
