@@ -60,9 +60,15 @@ if (isset($_GET["key"], $_GET["args"]) && $_GET["key"] == $key)
       break;
 
     case "draw":
-      if (isset($_GET["winner"]) && trim($_GET["winner"]) != "")
+      if (count($argsArray) >= 2)
       {
-        $winnerText = str_replace(" ", "_", trim(strtolower($_GET["winner"])));
+        $winnerText = "";
+        for ($i = 1; $i < count($argsArray); $i++)
+        {
+          $winnerText .= $argsArray[$i] . " ";
+        }
+        $winnerText = str_replace(" ", "_", trim(strtolower($winnerText)));
+
         $latest = GetLatestOptions($channel, $bearer);
         $winnerId;
         foreach ($latest as $option)
@@ -70,7 +76,7 @@ if (isset($_GET["key"], $_GET["args"]) && $_GET["key"] == $key)
           if ($option["command"] == $winnerText)
             $winnerId = $option["_id"];
         }
-        PickWinningOption($channel, $bearer, GetLatestId($channel, $bearer), $winnerId);
+        PickWinningOption($bot, GetLatestId($bot), $winnerId);
       }
       else
         echo "Wrong format! Expected !bets draw winningOption";
