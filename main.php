@@ -69,7 +69,7 @@ if (isset($_GET["key"], $_GET["args"]) && $_GET["key"] == $key)
         }
         $winnerText = str_replace(" ", "_", trim(strtolower($winnerText)));
 
-        $latest = GetLatestOptions($channel, $bearer);
+        $latest = GetLatestOptions($bot);
         $winnerId;
         foreach ($latest as $option)
         {
