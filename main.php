@@ -2,7 +2,6 @@
 /*
 Credentials structure:
 $key = "random string";
-$channel = "SE channelID";
 $bearer = "SE JWT token";
 */
 require_once("credentials.php");

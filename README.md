@@ -5,7 +5,6 @@ Chat commands for StreamElements' Contests
 * Create file called `credentials.php`
 * The file will contain three variables
   * `$key` - random string, that is used in URL
-  * `$channel` SE Account ID that you can find [here](https://streamelements.com/dashboard/account/channels)
   * `$bearer` SE JWT Token that you can find [here](https://streamelements.com/dashboard/account/channels) (After clicking "Show secrets")
 
 
