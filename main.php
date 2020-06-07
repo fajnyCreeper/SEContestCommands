@@ -82,6 +82,7 @@ if (isset($_GET["key"], $_GET["args"]) && $_GET["key"] == $key)
       break;
 
     case "refund":
+      CloseContest($bot, GetActiveId($bot));
       RefundContest($bot, GetLatestId($bot));
       break;
 
