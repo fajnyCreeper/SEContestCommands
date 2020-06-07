@@ -1,5 +1,7 @@
 <?php
 function CloseContest($bot, $contestId)
 {
-  $bot->contestClose($contestId);
+  $res = $bot->contestClose($contestId);
+  
+  return $res;
 }
