@@ -1,1 +1,6 @@
 credentials.php
+
+# composer
+composer.phar
+composer.lock
+/vendor/

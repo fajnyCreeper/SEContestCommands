@@ -9,6 +9,8 @@ require_once("credentials.php");
 
 if (isset($_GET["key"], $_GET["action"]) && $_GET["key"] == $key)
 {
+  require_once("vendor/autoload.php");
+
   require_once("open.php");
   require_once("active.php");
   require_once("close.php");
