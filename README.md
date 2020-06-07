@@ -12,11 +12,7 @@ Chat commands for StreamElements' Contests
 ## Request
 This will explain all possible variables
 * `key` - user generated string from
-* `action` - action, that the API should do (start, close, draw bets)
-* `name` - name of bets (used with action _"start"_)
-* `duration` - duration of bets in minutes (used with action _"start"_)
-* `options` - options to bet, separated by space (underscore used as space)  (used with action _"start"_)
-* `winner` winning option (used with action _"draw"_)
+* `args` - arguments that are passed and processed
 
 ## Chat commands
 Examples are using base command `!bets`
@@ -24,10 +20,11 @@ Examples are using base command `!bets`
 !bets start <Bets_title> <Duration> <1st_option> ... <10th_option>
 !bets close
 !bets draw <Winning_option>
+!bets refund
 ```
 
 ### Request on API
 This will show example body of StreamElements command
 ```
-${customapi.example.com/main.php?key=my_key&action=${pathescape ${queryescape ${1}}}&name=${pathescape ${queryescape ${2|' '}}}&duration=${pathescape ${queryescape ${3|' '}}}&options=${pathescape ${queryescape ${4:|' '}}}&winner=${pathescape ${queryescape ${2:|' '}}}}
+${customapi.example.com/main.php?key=my_key&args=${pathescape ${queryescape ${1:|' '}}}}
 ```
