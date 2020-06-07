@@ -29,5 +29,5 @@ Examples are using base command `!bets`
 ### Request on API
 This will show example body of StreamElements command
 ```
-${customapi.example.com/SEContestChatCommands.php?key=my_key&action=${pathescape ${queryescape ${1}}}&name=${pathescape ${queryescape ${2|' '}}}&duration=${pathescape ${queryescape ${3|' '}}}&options=${pathescape ${queryescape ${4:|' '}}}&winner=${pathescape ${queryescape ${2:|' '}}}}
+${customapi.example.com/main.php?key=my_key&action=${pathescape ${queryescape ${1}}}&name=${pathescape ${queryescape ${2|' '}}}&duration=${pathescape ${queryescape ${3|' '}}}&options=${pathescape ${queryescape ${4:|' '}}}&winner=${pathescape ${queryescape ${2:|' '}}}}
 ```
