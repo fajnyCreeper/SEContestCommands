@@ -7,9 +7,12 @@ $bearer = "SE JWT token";
 */
 require_once("credentials.php");
 
-if (isset($_GET["key"], $_GET["action"]) && $_GET["key"] == $key)
+if (isset($_GET["key"], $_GET["args"]) && $_GET["key"] == $key)
 {
   require_once("vendor/autoload.php");
+  require_once("StreamElements.php");
+
+  $bot = new StreamElements($bearer, "Bearer");
 
   require_once("open.php");
   require_once("active.php");
@@ -18,40 +21,35 @@ if (isset($_GET["key"], $_GET["action"]) && $_GET["key"] == $key)
   require_once("pick.php");
   require_once("refund.php");
 
-  switch(strtolower($_GET["action"]))
+  $args = urldecode($_GET["args"]);
+  $argsArray = explode(" ", $args);
+
+  $action = strtolower($argsArray[0]);
+
+  switch($action)
   {
     case "start":
-      if (isset($_GET["name"], $_GET["duration"], $_GET["options"]) && trim($_GET["name"]) != "" && trim($_GET["duration"]) != "" && trim($_GET["options"]) != "")
+      if (count($argsArray) >= 5)
       {
         $duration = 10;
         try
         {
-          $duration = intval($_GET["duration"]);
+          $duration = intval($argsArray[2]);
         }
-        catch (\Exception $e)
+        catch (Exception $e)
         {
           $duration = 15;
         }
 
-        $name = str_replace("_", " ", trim(urldecode($_GET["name"])));
-        $optionsRaw = preg_split('/ /', trim(urldecode($_GET["options"])));
+        $title = str_replace("_", " ", trim($argsArray[1]));
+
         $options = array();
-        foreach($optionsRaw as $key => $value)
+        for ($i = 3; $i < count($argsArray); $i++)
         {
-          $options[$key] = array("title" => str_replace("_", " ", $value), "command" => strtolower($value));
+          $options[$i - 3] = array("title" => str_replace("_", " ", $argsArray[$i]), "command" => strtolower($argsArray[$i]));
         }
-        unset($value);
 
-        $data = array(
-          "botResponses" => false,
-          "title" => "$name",
-          "minBet" => 10,
-          "maxBet" => 10000,
-          "duration" => $duration,
-          "options" => $options
-        );
-
-        OpenContest($channel, $bearer, $data);
+        OpenContest($bot, $title, $duration, $options);
       }
       else
         echo "Wrong format! Expected !bets start Bets_title duration Option_1 Option_2 ...";
