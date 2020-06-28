@@ -81,8 +81,81 @@ if (isset($_GET["key"], $_GET["args"]) && $_GET["key"] == $key)
       RefundContest($bot, GetLatestId($bot));
       break;
 
+    case "advanced":
+      $advAction = (count($argsArray) >= 2) ? (strtolower($argsArray[1])) : ("");
+      switch($advAction)
+      {
+        case "start":
+          if (count($argsArray) >= 8)
+          {
+            $duration = intval($argsArray[3]);
+            if ($duration == 0)
+              $duration = 15;
+
+            $minBet = intval($argsArray[4]);
+            if ($minBet == 0)
+              $minBet = 1;
+
+            $maxBet = intval($argsArray[5]);
+            if ($maxBet == 0)
+              $maxBet = 10000;
+
+            $title = str_replace("_", " ", trim($argsArray[2]));
+
+            $options = array();
+            for ($i = 6; $i < count($argsArray); $i++)
+            {
+              $options[$i - 6] = array("title" => str_replace("_", " ", $argsArray[$i]), "command" => strtolower($argsArray[$i]));
+            }
+
+            OpenContest($bot, $title, $minBet, $maxBet, $duration, $options);
+          }
+          else
+            echo "Wrong format! Expected !bets advanced start Bets_title duration minBet maxBet Option_1 Option_2 ...";
+          break;
+
+        case "close":
+          if (count($argsArray) >= 3)
+          {
+            CloseContest($bot, $argsArray[2]);
+          }
+          else
+          {
+            echo "Wrong format! Expected !bets advanced close contestId";
+          }
+          break;
+
+        case "draw":
+          if (count($argsArray) >= 4)
+          {
+            PickWinningOption($bot, $argsArray[2], $argsArray[3]);
+          }
+          else
+          {
+            echo "Wrong format! Expected !bets advanced draw contestId winnerId";
+          }
+          break;
+
+        case "refund":
+          if (count($argsArray) >= 3)
+          {
+            CloseContest($bot, $argsArray[2]);
+            RefundContest($bot, $argsArray[2]);
+          }
+          else
+          {
+            echo "Wrong format! Expected !bets advanced refund contestId";
+          }
+          break;
+
+        default:
+          echo "Invalid action! Expected: start|close|draw|refund";
+          break;
+      }
+      break;
+
     default:
-      echo "Invalid action! Expected: start|close|draw|refund";
+      echo "Invalid action! Expected: start|close|draw|refund|advanced";
   }
 }
 else

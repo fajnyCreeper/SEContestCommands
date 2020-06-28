@@ -20,6 +20,11 @@ Examples are using base command `!bets`
 !bets close
 !bets draw <Winning_option>
 !bets refund
+
+!bets advanced start <Bets_title> <Duration> <MinBet> <MaxBet> <1st_option> ... <10th_option>
+!bets advanced close <contestId>
+!bets advanced draw <contestId> <winnerId>
+!bets advanced refund <contestId>
 ```
 
 ### Request on API
