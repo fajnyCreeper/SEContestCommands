@@ -31,7 +31,6 @@ if (isset($_GET["key"], $_GET["args"]) && $_GET["key"] == $key)
     case "start":
       if (count($argsArray) >= 5)
       {
-        $duration = 0;
         $duration = intval($argsArray[2]);
         if ($duration == 0)
           $duration = 15;
