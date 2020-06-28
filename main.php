@@ -31,15 +31,10 @@ if (isset($_GET["key"], $_GET["args"]) && $_GET["key"] == $key)
     case "start":
       if (count($argsArray) >= 5)
       {
-        $duration = 10;
-        try
-        {
-          $duration = intval($argsArray[2]);
-        }
-        catch (Exception $e)
-        {
+        $duration = 0;
+        $duration = intval($argsArray[2]);
+        if ($duration == 0)
           $duration = 15;
-        }
 
         $title = str_replace("_", " ", trim($argsArray[1]));
 
