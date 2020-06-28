@@ -49,7 +49,7 @@ if (isset($_GET["key"], $_GET["args"]) && $_GET["key"] == $key)
           $options[$i - 3] = array("title" => str_replace("_", " ", $argsArray[$i]), "command" => strtolower($argsArray[$i]));
         }
 
-        OpenContest($bot, $title, $duration, $options);
+        OpenContest($bot, $title, 1, 10000, $duration, $options);
       }
       else
         echo "Wrong format! Expected !bets start Bets_title duration Option_1 Option_2 ...";
