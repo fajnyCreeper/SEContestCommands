@@ -70,7 +70,14 @@ if (isset($_GET["key"], $_GET["args"]) && $_GET["key"] == $key)
           if ($option["command"] == $winnerText)
             $winnerId = $option["_id"];
         }
-        PickWinningOption($bot, GetLatestId($bot), $winnerId);
+        if (empty($winnerId))
+        {
+          echo "Invalid winning option!";
+        }
+        else
+        {
+          PickWinningOption($bot, GetLatestId($bot), $winnerId);
+        }
       }
       else
         echo "Wrong format! Expected !bets draw winningOption";
