@@ -10,7 +10,7 @@ Chat commands for StreamElements' Contests
 
 ## Request
 This will explain all possible variables
-* `key` - user generated string from
+* `key` - user generated string from `credentials.php`
 * `args` - arguments that are passed and processed
 
 ## Chat commands
